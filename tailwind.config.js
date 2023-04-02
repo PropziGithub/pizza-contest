@@ -37,9 +37,6 @@ module.exports = {
       borderRadius: {
         "4xl": "2rem",
       },
-      fontFamily: {
-        sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
-      },
       maxWidth: {
         "2xl": "40rem",
       },
