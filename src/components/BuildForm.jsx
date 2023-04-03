@@ -28,6 +28,10 @@ const BuildForm = () => {
       await response.text();
       setFormData({});
       localStorage.setItem("formData", null);
+      const storageEvent = new StorageEvent("storage", {
+        key: "formSubmitted",
+      });
+      window.dispatchEvent(storageEvent);
     } catch (error) {
       event.target.reset();
     }
@@ -40,6 +44,10 @@ const BuildForm = () => {
 
   useEffect(() => {
     window.addEventListener("storage", (event) => {
+      console.log(event.key);
+      if(event.key === "formSubmitted") {
+        
+      }
       setStartFormData(JSON.parse(localStorage.getItem("formData")));
       formRef.current.scrollIntoView({ behavior: "smooth" });
     });

@@ -1,6 +1,6 @@
 import one from "@/assets/one.gif";
 import Button from "@/components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TextField } from "./Fields";
 
 const StartForm = () => {
@@ -12,17 +12,8 @@ const StartForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // const response = await fetch("https://8c40-45-215-255-48.in.ngrok.io", {
-      //   method: "POST",
-      //   body: JSON.stringify(formData),
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-      // await response.text();
-      // setFormData({});
       localStorage.setItem("formData", JSON.stringify(formData));
-      const storageEvent = new Event("storage", {
+      const storageEvent = new StorageEvent("storage", {
         key: "formData",
       });
 
@@ -33,11 +24,19 @@ const StartForm = () => {
   };
   const hasValues = Object.values(formData).every((value) => value === "");
 
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  useEffect(() => {
+    window.addEventListener("storage", (event) => {
+      if (event.key === "formSubmitted") {
+        setFormData({});
+      }
+    });
+  }, [formData]);
+
   return (
     <div className="mt-10 w-[486px]  bg-primary-medium rounded-[20px] border border-1 border-grey-light">
       <div className="text-center bg-primary-dark rounded-t-[20px] py-4">
