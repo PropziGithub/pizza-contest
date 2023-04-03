@@ -95,19 +95,27 @@ const BuildForm = () => {
           </option>
           <option value="No Cheese">No Cheese</option>
           <option value="Mozzarella cheese">Mozzarella Cheese</option>
-          <option value="Blend of Mozzarella and Cheddar Cheese">Blend of Mozzarella and Cheddar Cheese</option>
+          <option value="Blend of Mozzarella and Cheddar Cheese">
+            Blend of Mozzarella and Cheddar Cheese
+          </option>
           <option value="Feta Cheese">Feta Cheese</option>
           <option value="Asiago Cheese">Asiago Cheese</option>
           <option value="Parmesan Cheese">Parmesan Cheese</option>
-          <option value="Lactose Free Mozzarella">Lactose Free Mozzarella</option>
-          <option value="Dairy Free Vegan Cheese">Dairy Free Vegan Cheese</option>
+          <option value="Lactose Free Mozzarella">
+            Lactose Free Mozzarella
+          </option>
+          <option value="Dairy Free Vegan Cheese">
+            Dairy Free Vegan Cheese
+          </option>
           <option value="Extra Cheese">Extra Cheese</option>
         </SelectField>
         <SelectField
           value={formData.meat || ""}
           onChange={handleChange}
           name="meat"
-          label="MEAT TOPPINGS" required>
+          label="MEAT TOPPINGS"
+          required
+        >
           <option value="" disabled selected hidden>
             -- select one --
           </option>
@@ -118,7 +126,9 @@ const BuildForm = () => {
           <option value="Ham">Ham</option>
           <option value="Chicken Strips">Chicken Strips</option>
           <option value="Shaved Beef Steak">Shaved Beef Steak</option>
-          <option value="Boneless (Breaded) Chicken">Boneless (Breaded) Chicken</option>
+          <option value="Boneless (Breaded) Chicken">
+            Boneless (Breaded) Chicken
+          </option>
           <option value="Italian Sausage">Italian Sausage</option>
           <option value="Ground Beef">Ground Beef</option>
         </SelectField>
@@ -126,7 +136,9 @@ const BuildForm = () => {
           value={formData.veggie || ""}
           onChange={handleChange}
           name="veggie"
-          label="VEGGIE TOPPINGS" required>
+          label="VEGGIE TOPPINGS"
+          required
+        >
           <option value="" disabled selected hidden>
             -- select one --
           </option>
@@ -144,51 +156,82 @@ const BuildForm = () => {
           <option value="Basil">Basil</option>
           <option value="Diced Pickles">Diced Pickles</option>
         </SelectField>
-        <SelectField label="SEASONING" required>
+        <SelectField
+          value={formData.seasoning || ""}
+          onChange={handleChange}
+          label="SEASONING"
+          name="seasoning"
+          required
+        >
           <option value="" disabled selected hidden>
             -- select one --
           </option>
-          <option>Montreal Steak Spice</option>
-          <option>Garlic + Herb Seasoning</option>
-          <option>Italian Herbs</option>
-          <option>Chili Peppers</option>
-          <option>Parmesan Cheese</option>
+          <option value="Montreal Steak Spice">Montreal Steak Spice</option>
+          <option value="Garlic + Herb Seasoning">
+            Garlic + Herb Seasoning
+          </option>
+          <option value="Italian Herbs">Italian Herbs</option>
+          <option value="Chili Peppers">Chili Peppers</option>
+          <option value="Parmesan Cheese">Parmesan Cheese</option>
         </SelectField>
-        <SelectField label="FLAVOUR SWIRLS" required>
+        <SelectField
+          value={formData.flavour || ""}
+          onChange={handleChange}
+          label="FLAVOUR SWIRLS"
+          required
+        >
           <option value="" disabled selected hidden>
             -- select one --
           </option>
-          <option>Ranch Swirl</option>
-          <option>Medium Buffalo Sauce Swirl</option>
-          <option>Hot Buffalo Sauce Swirl</option>
-          <option>Bold BBQ Sauce Swirl</option>
-          <option>Sweet &amp; Spicy Thai Swirl</option>
+          <option value="Ranch Swirl">Ranch Swirl</option>
+          <option value="Medium Buffalo Sauce Swirl">
+            Medium Buffalo Sauce Swirl
+          </option>
+          <option value="Hot Buffalo Sauce Swirl">
+            Hot Buffalo Sauce Swirl
+          </option>
+          <option value="Bold BBQ Sauce Swirl">Bold BBQ Sauce Swirl</option>
+          <option value="Sweet & Spicy Thai Swirl">
+            Sweet &amp; Spicy Thai Swirl
+          </option>
         </SelectField>
-        <SelectField label="CHOOSE YOUR DIP" required>
+        <SelectField
+          value={formData.dip || ""}
+          onChange={handleChange}
+          label="CHOOSE YOUR DIP"
+          required
+        >
           <option value="" disabled selected hidden>
             -- select one --
           </option>
-          <option>Topper’s Famous House Dip</option>
-          <option>Ranch</option>
-          <option>Caesar</option>
-          <option>Tomato</option>
-          <option>Sweet &amp; Spicy Thai</option>
-          <option>Bold BBQ</option>
-          <option>Cheddar Chipotle</option>
-          <option>Medium Hot Sauce</option>
-          <option>Hot Sauce</option>
-          <option>Honey Garlic</option>
+          <option value="Topper’s Famous House Dip">
+            Topper’s Famous House Dip
+          </option>
+          <option value="Ranch">Ranch</option>
+          <option value="Caesar">Caesar</option>
+          <option value="Tomato">Tomato</option>
+          <option value="Sweet & Spicy Thai">Sweet &amp; Spicy Thai</option>
+          <option value="Bold BBQ">Bold BBQ</option>
+          <option value="Cheddar Chipotle">Cheddar Chipotle</option>
+          <option value="Medium Hot Sauce">Medium Hot Sauce</option>
+          <option value="Hot Sauce">Hot Sauce</option>
+          <option value="Honey Garlic">Honey Garlic</option>
         </SelectField>
-        <SelectField label="SPECIAL INSTRUCTIONS" required>
+        <SelectField
+          value={formData.instructions || ""}
+          onChange={handleChange}
+          label="SPECIAL INSTRUCTIONS"
+          required
+        >
           <option value="" disabled selected hidden>
             -- select one --
           </option>
-          <option>Light Sauce</option>
-          <option>Extra Sauce</option>
-          <option>Lightly Baked</option>
-          <option>Well Done</option>
-          <option>Brush the pizza crust with Garlic Butter</option>
-          <option>Brush the pizza crust with Olive Oil</option>
+          <option value="Light Sauce">Light Sauce</option>
+          <option value="Extra Sauce">Extra Sauce</option>
+          <option value="Lightly Baked">Lightly Baked</option>
+          <option value="Well Done">Well Done</option>
+          <option value="Brush the pizza crust with Garlic Butter">Brush the pizza crust with Garlic Butter</option>
+          <option value="Brush the pizza crust with Olive Oil">Brush the pizza crust with Olive Oil</option>
         </SelectField>
         <span className="text-center text-[#FFFFFF] md:text-[12.4px] text-[11px]">
           *We recommend a maximum of 10 toppings total*
