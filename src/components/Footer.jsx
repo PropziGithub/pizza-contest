@@ -11,7 +11,7 @@ const Footer = () => {
             <img src={logo} alt="logo" className="h-full" />
           </div>
           <div>
-            <span className="text-[14px] md:text-[18px] text-[#FFFFFF] leading-[1.6px] font-bold">
+            <span className="text-[14px] md:text-[18px] md:mr-12 mr-0 text-[#FFFFFF] leading-[1.6px] font-bold">
               <span className="cursor-pointer hover:underline">
                 <Link to={"/rules"} className="font-bold">
                   Contest Rules
