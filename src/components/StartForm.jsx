@@ -1,19 +1,30 @@
-import React, { useState } from "react";
-import Button from "@/components/Button";
 import one from "@/assets/one.gif";
+import Button from "@/components/Button";
+import { useState } from "react";
 import { TextField } from "./Fields";
 import { Link } from "react-router-dom";
 
 const StartForm = () => {
+  const dataStored = JSON.parse(localStorage.getItem("formData")) || {};
   const [isChecked, setIsChecked] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(dataStored);
   console.log("DATA:", formData);
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    localStorage.setItem('formData', JSON.stringify(formData));
-    console.log("Data saved to localStorage:", formData);
+    try {
+      localStorage.setItem("formData", JSON.stringify(formData));
+      const storageEvent = new Event("storage", {
+        key: "formData",
+      });
+
+      window.dispatchEvent(storageEvent);
+    } catch (error) {
+      event.target.reset();
+    }
   };
+  const hasValues = Object.values(formData).every((value) => value === "");
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -80,7 +91,12 @@ const StartForm = () => {
           </span>
         </div>
         <div>
-          <Button  type="submit" variant="solid" className="w-full">
+          <Button
+            type="submit"
+            variant="solid"
+            className="w-full"
+            disabled={hasValues || !isChecked}
+          >
             <span>Start Building Your Custom Pizza</span>
           </Button>
         </div>

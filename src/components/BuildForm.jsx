@@ -1,24 +1,32 @@
-import React, { useState, useRef } from "react";
-import Button from "@/components/Button";
 import two from "@/assets/two.gif";
+import Button from "@/components/Button";
+import { useEffect, useState } from "react";
 import { SelectField } from "./Fields";
 
 const BuildForm = () => {
   const [formData, setFormData] = useState({});
-  console.log("BUILD DATA:", formData);
-
+  const [startFormData, setStartFormData] = useState(
+    JSON.parse(localStorage.getItem("formData"))
+  );
+console.log("Form Data:", formData)
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("https://8c40-45-215-255-48.in.ngrok.io", {
+      const newPayload = {
+        ...startFormData,
+        metaData: formData,
+      };
+
+      const response = await fetch("https://78ea-41-216-95-227.in.ngrok.io", {
         method: "POST",
-        body: JSON.stringify(formData),
+        body: JSON.stringify(newPayload),
         headers: {
           "Content-Type": "application/json",
         },
       });
       await response.text();
       setFormData({});
+      localStorage.setItem("formData", null);
     } catch (error) {
       event.target.reset();
     }
@@ -28,6 +36,14 @@ const BuildForm = () => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  useEffect(() => {
+    window.addEventListener("storage", (event) => {
+      console.log(event);
+      setStartFormData(JSON.parse(localStorage.getItem("formData")));
+    });
+  }, [formData]);
+
   return (
     <div  id="build-form" className="mt-20 w-[486px] bg-primary-medium rounded-[20px] border border-1 border-grey-light">
       <div className="text-center bg-primary-dark rounded-t-[20px] py-4">
@@ -40,7 +56,10 @@ const BuildForm = () => {
           </span>
         </div>
       </div>
-      <form action="#" className="grid grid-cols-1  gap-y-4 py-4 px-10 ">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1  gap-y-4 py-4 px-10 "
+      >
         <SelectField
           value={formData.crust || ""}
           onChange={handleChange}
@@ -52,7 +71,7 @@ const BuildForm = () => {
             -- select one --
           </option>
           <option value="Regular Curst">Regular Curst</option>
-          <option value="Thin_Curst">Thin Curst</option>
+          <option value="Thin Curst">Thin Curst</option>
           <option value="Ultra-thin Curst">Ultra-thin Curst</option>
           <option value="Thick Curst">Thick Curst</option>
           <option value="Whole Wheat Curst">Whole Wheat Curst</option>
@@ -178,6 +197,7 @@ const BuildForm = () => {
           value={formData.flavour || ""}
           onChange={handleChange}
           label="FLAVOUR SWIRLS"
+          name="flavour"
           required
         >
           <option value="" disabled selected hidden>
@@ -199,6 +219,7 @@ const BuildForm = () => {
           value={formData.dip || ""}
           onChange={handleChange}
           label="CHOOSE YOUR DIP"
+          name="dip"
           required
         >
           <option value="" disabled selected hidden>
@@ -221,6 +242,7 @@ const BuildForm = () => {
           value={formData.instructions || ""}
           onChange={handleChange}
           label="SPECIAL INSTRUCTIONS"
+          name="instructions"
           required
         >
           <option value="" disabled selected hidden>
@@ -237,7 +259,12 @@ const BuildForm = () => {
           *We recommend a maximum of 10 toppings total*
         </span>
         <div>
-          <Button type="submit" variant="solid" className="w-full">
+          <Button
+            type="submit"
+            variant="solid"
+            className="w-full"
+            disabled={startFormData ? false : true}
+          >
             <span>Enter the Contest</span>
           </Button>
         </div>
