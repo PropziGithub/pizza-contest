@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <section className="bg-primary-light py-2 ">
+    <section className="bg-primary-light py-2">
       <Container>
         <div className="flex flex-col gap-y-2 md:gap-y-0 md:flex-row items-center justify-between pt-6">
           <div className="h-[46px]">
@@ -18,9 +18,14 @@ const Footer = () => {
                 </Link>
               </span>{" "}
               |{" "}
-              <span className="cursor-pointer hover:underline">
+              <a
+                href="https://www.dropbox.com/s/qwfj5dhxmu0dfy5/Privacy%20Policy.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer hover:underline"
+              >
                 Privacy Policy
-              </span>
+              </a>
             </span>
           </div>
           <div className="flex space-x-6 mt-2 md:mt-0">
