@@ -1,6 +1,6 @@
 import two from "@/assets/two.gif";
 import Button from "@/components/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SelectField } from "./Fields";
 
 const BuildForm = () => {
@@ -8,6 +8,7 @@ const BuildForm = () => {
   const [startFormData, setStartFormData] = useState(
     JSON.parse(localStorage.getItem("formData"))
   );
+  const formRef = useRef();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -39,13 +40,16 @@ const BuildForm = () => {
 
   useEffect(() => {
     window.addEventListener("storage", (event) => {
-      console.log(event);
       setStartFormData(JSON.parse(localStorage.getItem("formData")));
+      formRef.current.scrollIntoView({ behavior: "smooth" });
     });
   }, [formData]);
 
   return (
-    <div className="mt-20 w-[486px] bg-primary-medium rounded-[20px] border border-1 border-grey-light">
+    <div
+      ref={formRef}
+      className="mt-20 w-[486px] bg-primary-medium rounded-[20px] border border-1 border-grey-light"
+    >
       <div className="text-center bg-primary-dark rounded-t-[20px] py-4">
         <div className="flex justify-around items-center">
           <div className="md:hidden flex justify-center items-center h-[47px] w-[47px] bg-primary-medium rounded-full flex-none ">
@@ -249,8 +253,12 @@ const BuildForm = () => {
           <option value="Extra Sauce">Extra Sauce</option>
           <option value="Lightly Baked">Lightly Baked</option>
           <option value="Well Done">Well Done</option>
-          <option value="Brush the pizza crust with Garlic Butter">Brush the pizza crust with Garlic Butter</option>
-          <option value="Brush the pizza crust with Olive Oil">Brush the pizza crust with Olive Oil</option>
+          <option value="Brush the pizza crust with Garlic Butter">
+            Brush the pizza crust with Garlic Butter
+          </option>
+          <option value="Brush the pizza crust with Olive Oil">
+            Brush the pizza crust with Olive Oil
+          </option>
         </SelectField>
         <span className="text-center text-[#FFFFFF] md:text-[12.4px] text-[11px]">
           *We recommend a maximum of 10 toppings total*
