@@ -1,6 +1,6 @@
 import one from "@/assets/one.gif";
 import Button from "@/components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TextField } from "./Fields";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const StartForm = () => {
     event.preventDefault();
     try {
       localStorage.setItem("formData", JSON.stringify(formData));
-      const storageEvent = new Event("storage", {
+      const storageEvent = new StorageEvent("storage", {
         key: "formData",
       });
 
@@ -25,11 +25,18 @@ const StartForm = () => {
   };
   const hasValues = Object.values(formData).every((value) => value === "");
 
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  useEffect(() => {
+    window.addEventListener("storage", (event) => {
+      if (event.key === "formSubmitted") {
+        setFormData({});
+      }
+    });
+  }, [formData]);
 
   return (
     <div className="mt-10 w-[486px]  bg-primary-medium rounded-[20px] border border-1 border-grey-light">

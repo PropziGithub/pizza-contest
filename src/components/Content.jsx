@@ -1,16 +1,13 @@
-import React,{useState} from "react";
-import Container from "@/components/Container";
-import pizza from "@/assets/pizza.gif";
 import one from "@/assets/one.gif";
-import two from "@/assets/two.gif";
+import pizza from "@/assets/pizza.gif";
 import three from "@/assets/three.gif";
-import StartForm from "./StartForm";
+import two from "@/assets/two.gif";
+import Container from "@/components/Container";
 import BuildForm from "./BuildForm";
 import InstagramFilters from "./InstagramFilter";
+import StartForm from "./StartForm";
 
 const Content = () => {
-  const [formData, setFormData] = useState({});
-  
   return (
     <section>
       <div className="bg-primary-medium w-full py-10">
@@ -44,21 +41,21 @@ const Content = () => {
         <Container>
           <div className="flex justify-center">
             <div className="hidden md:flex  justify-center items-center h-[160px] w-[160px] bg-primary-medium rounded-full flex-none mr-20 mt-[60px]">
-              <img src={one} alt="first step" className="h-[76px]"/>
-          </div>
-          <StartForm />
-          </div>
-          <div className="flex justify-center">
-          <div className="hidden md:flex  justify-center items-center h-[160px] w-[160px] bg-primary-medium rounded-full flex-none mr-20 mt-[95px]">
-              <img src={two} alt="first step" className="h-[76px]"/>
-          </div>
-          <BuildForm />
+              <img src={one} alt="first step" className="h-[76px]" />
+            </div>
+            <StartForm />
           </div>
           <div className="flex justify-center">
-          <div className="hidden md:flex  justify-center items-center h-[160px] w-[160px] bg-primary-medium rounded-full flex-none mr-20 mt-[90px]">
-              <img src={three} alt="first step" className="h-[76px]"/>
+            <div className="hidden md:flex  justify-center items-center h-[160px] w-[160px] bg-primary-medium rounded-full flex-none mr-20 mt-[95px]">
+              <img src={two} alt="first step" className="h-[76px]" />
+            </div>
+            <BuildForm />
           </div>
-          <InstagramFilters />
+          <div className="flex justify-center">
+            <div className="hidden md:flex  justify-center items-center h-[160px] w-[160px] bg-primary-medium rounded-full flex-none mr-20 mt-[90px]">
+              <img src={three} alt="first step" className="h-[76px]" />
+            </div>
+            <InstagramFilters />
           </div>
         </Container>
       </section>

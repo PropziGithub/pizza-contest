@@ -1,14 +1,17 @@
 import two from "@/assets/two.gif";
 import Button from "@/components/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SelectField } from "./Fields";
+import Spinner from "./Spinner";
 
 const BuildForm = () => {
   const [formData, setFormData] = useState({});
   const [startFormData, setStartFormData] = useState(
     JSON.parse(localStorage.getItem("formData"))
   );
-console.log("Form Data:", formData)
+  const [success, setSuccess] = useState(false);
+  const formRef = useRef();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -27,8 +30,14 @@ console.log("Form Data:", formData)
       await response.text();
       setFormData({});
       localStorage.setItem("formData", null);
+      const storageEvent = new StorageEvent("storage", {
+        key: "formSubmitted",
+      });
+      window.dispatchEvent(storageEvent);
+      setSuccess(true);
     } catch (error) {
       event.target.reset();
+      setSuccess(false);
     }
   };
 
@@ -39,13 +48,26 @@ console.log("Form Data:", formData)
 
   useEffect(() => {
     window.addEventListener("storage", (event) => {
-      console.log(event);
+      console.log(event.key);
+      if (event.key === "formSubmitted") {
+      }
       setStartFormData(JSON.parse(localStorage.getItem("formData")));
+      formRef.current.scrollIntoView({ behavior: "smooth" });
     });
   }, [formData]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSuccess(false);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [success]);
   return (
-    <div  id="build-form" className="mt-20 w-[486px] bg-primary-medium rounded-[20px] border border-1 border-grey-light">
+    <div
+      ref={formRef}
+      className="mt-20 w-[486px] bg-primary-medium rounded-[20px] border border-1 border-grey-light"
+    >
       <div className="text-center bg-primary-dark rounded-t-[20px] py-4">
         <div className="flex justify-around items-center">
           <div className="md:hidden flex justify-center items-center h-[47px] w-[47px] bg-primary-medium rounded-full flex-none ">
@@ -252,8 +274,12 @@ console.log("Form Data:", formData)
           <option value="Extra Sauce">Extra Sauce</option>
           <option value="Lightly Baked">Lightly Baked</option>
           <option value="Well Done">Well Done</option>
-          <option value="Brush the pizza crust with Garlic Butter">Brush the pizza crust with Garlic Butter</option>
-          <option value="Brush the pizza crust with Olive Oil">Brush the pizza crust with Olive Oil</option>
+          <option value="Brush the pizza crust with Garlic Butter">
+            Brush the pizza crust with Garlic Butter
+          </option>
+          <option value="Brush the pizza crust with Olive Oil">
+            Brush the pizza crust with Olive Oil
+          </option>
         </SelectField>
         <span className="text-center text-[#FFFFFF] md:text-[12.4px] text-[11px]">
           *We recommend a maximum of 10 toppings total*
@@ -265,7 +291,7 @@ console.log("Form Data:", formData)
             className="w-full"
             disabled={startFormData ? false : true}
           >
-            <span>Enter the Contest</span>
+            {success ? <Spinner width={20} height={20} color={"#FFFFFF"} /> : <span>Enter the Contest</span>}
           </Button>
         </div>
       </form>
