@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Button from "@/components/Button";
 import two from "@/assets/two.gif";
 import { SelectField } from "./Fields";
@@ -29,7 +29,7 @@ const BuildForm = () => {
     setFormData({ ...formData, [name]: value });
   };
   return (
-    <div className="mt-20 w-[486px] bg-primary-medium rounded-[20px] border border-1 border-grey-light">
+    <div  id="build-form" className="mt-20 w-[486px] bg-primary-medium rounded-[20px] border border-1 border-grey-light">
       <div className="text-center bg-primary-dark rounded-t-[20px] py-4">
         <div className="flex justify-around items-center">
           <div className="md:hidden flex justify-center items-center h-[47px] w-[47px] bg-primary-medium rounded-full flex-none ">
