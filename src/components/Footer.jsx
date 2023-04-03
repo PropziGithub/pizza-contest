@@ -10,32 +10,35 @@ const Footer = () => {
             <img src={logo} alt="logo" className="h-full" />
           </div>
           <div>
-            <span className="text-[14px] md:text-[18px] text-[#FFFFFF] leading-[1.6px] font-bold cursor-pointer hover:underline">
-              Contest Rules | Terms & Conditions | Privacy Policy
+            <span className="text-[14px] md:text-[18px] text-[#FFFFFF] leading-[1.6px] font-bold">
+              <span className="cursor-pointer hover:underline">Contest Rules</span> | <span className="cursor-pointer hover:underline">Terms & Conditions</span> | <span className="cursor-pointer hover:underline">Privacy Policy</span>
             </span>
           </div>
           <div className="flex space-x-6 mt-2 md:mt-0">
-            <div className="flex justify-center items-center h-[31px] w-[31px] bg-[#FFFFFF] rounded-full cursor-pointer flex-none">
+            <a
+              href="https://www.facebook.com/topperspizzacanada/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex justify-center items-center h-[31px] w-[31px] bg-[#FFFFFF] rounded-full cursor-pointer flex-none"
+            >
               <img
                 className="h-[17px] w-[17px]"
-                src="https://v.fastcdn.co/u/6430ff65/47020280-0-twitter.svg"
-                alt="twitter logo"
+                src="https://cdn-icons-png.flaticon.com/512/160/160154.png"
+                alt="facebook logo"
               />
-            </div>
-            <div className="flex justify-center items-center h-[31px] w-[31px] bg-[#FFFFFF] rounded-full cursor-pointer flex-none">
+            </a>
+            <a
+              href="https://www.instagram.com/topperspizzacanada/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex justify-center items-center h-[31px] w-[31px] bg-[#FFFFFF] rounded-full cursor-pointer flex-none"
+            >
               <img
                 className="h-[17px] w-[17px]"
                 src="https://v.fastcdn.co/u/6430ff65/47019940-0-instagram.svg"
                 alt="instagram logo"
               />
-            </div>
-            <div className="flex justify-center items-center h-[31px] w-[31px] bg-[#FFFFFF] rounded-full cursor-pointer flex-none">
-              <img
-                className="h-[17px] w-[17px]"
-                src="https://v.fastcdn.co/u/6430ff65/47019880-0-linkedin.svg"
-                alt="linkedin logo"
-              />
-            </div>
+            </a>
           </div>
         </div>
         <p className="mt-6 text-center text-sm text-[#FFFFFF] md:mt-0">
