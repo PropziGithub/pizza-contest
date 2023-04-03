@@ -15,7 +15,7 @@ export default function Rules() {
         </div>
       </div>
 
-      <div className=" max-w-4xl mx-auto mb-10">
+      <div className=" max-w-4xl mx-auto mb-10 px-6 md:px-0">
         <p>
           THIS CONTEST IS OPEN ONLY TO RESIDENTS OF ONTARIO AND IS GOVERNED BY
           CANADIAN LAW AND THE LAWS OF THE PROVINCE OF ONTARIO. SEE BELOW FOR
