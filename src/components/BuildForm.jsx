@@ -20,7 +20,7 @@ const BuildForm = () => {
         metaData: formData,
       };
 
-      const response = await fetch("https://78ea-41-216-95-227.in.ngrok.io", {
+      const response = await fetch("https://auto.topperscontest.ca/", {
         method: "POST",
         body: JSON.stringify(newPayload),
         headers: {
