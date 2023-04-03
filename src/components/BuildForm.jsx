@@ -18,7 +18,7 @@ const BuildForm = () => {
       </div>
       <form action="#" className="grid grid-cols-1  gap-y-4 py-4 px-10 ">
         <SelectField label="CRUST" required>
-          <option value="" hidden>
+          <option value="" disabled selected hidden>
             -- select one --
           </option>
           <option>Regular Curst</option>
@@ -29,7 +29,7 @@ const BuildForm = () => {
           <option>Cauliflower Curst</option>
         </SelectField>
         <SelectField label="BASE SAUCE" required>
-          <option value="" hidden>
+          <option value="" disabled selected hidden>
             -- select one --
           </option>
           <option>Topper's Tomato Sauce</option>
@@ -42,7 +42,7 @@ const BuildForm = () => {
           <option>Sweet &amp; Spicy Thai Sauce</option>
         </SelectField>
         <SelectField label="CHEESE TOPPINGS" required>
-          <option value="" hidden>
+          <option value="" disabled selected hidden>
             -- select one --
           </option>
           <option>No Cheese</option>
@@ -56,7 +56,7 @@ const BuildForm = () => {
           <option>Extra Cheese</option>
         </SelectField>
         <SelectField label="MEAT TOPPINGS" required>
-          <option value="" hidden>
+          <option value="" disabled selected hidden>
             -- select one --
           </option>
           <option>Pepperoni</option>
@@ -71,7 +71,7 @@ const BuildForm = () => {
           <option>Ground Beef</option>
         </SelectField>
         <SelectField label="VEGGIE TOPPINGS" required>
-          <option value="" hidden>
+          <option value="" disabled selected hidden>
             -- select one --
           </option>
           <option>Fresh Mushrooms</option>
@@ -89,7 +89,7 @@ const BuildForm = () => {
           <option>Diced Pickles</option>
         </SelectField>
         <SelectField label="SEASONING" required>
-          <option value="" hidden>
+          <option value="" disabled selected hidden>
             -- select one --
           </option>
           <option>Montreal Steak Spice</option>
@@ -99,7 +99,7 @@ const BuildForm = () => {
           <option>Parmesan Cheese</option>
         </SelectField>
         <SelectField label="FLAVOUR SWIRLS" required>
-          <option value="" hidden>
+          <option value="" disabled selected hidden>
             -- select one --
           </option>
           <option>Ranch Swirl</option>
@@ -109,7 +109,7 @@ const BuildForm = () => {
           <option>Sweet &amp; Spicy Thai Swirl</option>
         </SelectField>
         <SelectField label="CHOOSE YOUR DIP" required>
-          <option value="" hidden>
+          <option value="" disabled selected hidden>
             -- select one --
           </option>
           <option>Topper’s Famous House Dip</option>
@@ -124,7 +124,7 @@ const BuildForm = () => {
           <option>Honey Garlic</option>
         </SelectField>
         <SelectField label="SPECIAL INSTRUCTIONS" required>
-          <option value="" hidden>
+          <option value="" disabled selected hidden>
             -- select one --
           </option>
           <option>Light Sauce</option>
