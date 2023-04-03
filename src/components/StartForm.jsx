@@ -1,29 +1,38 @@
-import React, { useState } from "react";
-import Button from "@/components/Button";
 import one from "@/assets/one.gif";
+import Button from "@/components/Button";
+import { useState } from "react";
 import { TextField } from "./Fields";
 
 const StartForm = () => {
+  const dataStored = JSON.parse(localStorage.getItem("formData")) || {};
   const [isChecked, setIsChecked] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(dataStored);
   console.log("DATA:", formData);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("https://8c40-45-215-255-48.in.ngrok.io", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
+      // const response = await fetch("https://8c40-45-215-255-48.in.ngrok.io", {
+      //   method: "POST",
+      //   body: JSON.stringify(formData),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+      // await response.text();
+      // setFormData({});
+      localStorage.setItem("formData", JSON.stringify(formData));
+      const storageEvent = new Event("storage", {
+        key: "formData",
       });
-      await response.text();
-      setFormData({});
+
+      window.dispatchEvent(storageEvent);
     } catch (error) {
       event.target.reset();
     }
   };
+  const hasValues = Object.values(formData).every((value) => value === "");
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,7 +54,10 @@ const StartForm = () => {
           </span>
         </div>
       </div>
-      <form onSubmit={handleSubmit}  className="grid grid-cols-1  gap-y-4 py-4 px-10 ">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1  gap-y-4 py-4 px-10 "
+      >
         <TextField
           onChange={handleChange}
           value={formData.name || ""}
@@ -89,7 +101,12 @@ const StartForm = () => {
           </span>
         </div>
         <div>
-          <Button type="submit" variant="solid" className="w-full">
+          <Button
+            type="submit"
+            variant="solid"
+            className="w-full"
+            disabled={hasValues || !isChecked}
+          >
             <span>Start Building Your Custom Pizza</span>
           </Button>
         </div>

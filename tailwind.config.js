@@ -20,6 +20,7 @@ module.exports = {
       "9xl": ["8rem", { lineHeight: "1" }],
     },
     colors: {
+      black: "#000",
       primary: {
         light: "#245815",
         medium: "#0E7844",
