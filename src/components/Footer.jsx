@@ -1,9 +1,10 @@
 import Container from "@/components/Container";
 import logo from "@/assets/footer_logo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <section className="bg-primary-light py-2">
+    <section className="bg-primary-light py-2 sr-only">
       <Container>
         <div className="flex flex-col gap-y-2 md:gap-y-0 md:flex-row items-center justify-between pt-6">
           <div className="h-[46px]">
@@ -11,7 +12,15 @@ const Footer = () => {
           </div>
           <div>
             <span className="text-[14px] md:text-[18px] text-[#FFFFFF] leading-[1.6px] font-bold">
-              <span className="cursor-pointer hover:underline">Contest Rules</span> | <span className="cursor-pointer hover:underline">Terms & Conditions</span> | <span className="cursor-pointer hover:underline">Privacy Policy</span>
+              <span className="cursor-pointer hover:underline">
+                <Link to={"/rules"} className="font-bold">
+                  Contest Rules
+                </Link>
+              </span>{" "}
+              |{" "}
+              <span className="cursor-pointer hover:underline">
+                Privacy Policy
+              </span>
             </span>
           </div>
           <div className="flex space-x-6 mt-2 md:mt-0">

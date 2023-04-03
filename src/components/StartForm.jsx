@@ -5,20 +5,50 @@ import { TextField } from "./Fields";
 
 const StartForm = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const [formData, setFormData] = useState({});
+  console.log("DATA:", formData);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("https://8c40-45-215-255-48.in.ngrok.io", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      await response.text();
+      setFormData({});
+    } catch (error) {
+      event.target.reset();
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
   return (
     <div className="mt-10 w-[486px]  bg-primary-medium rounded-[20px] border border-1 border-grey-light">
       <div className="text-center bg-primary-dark rounded-t-[20px] py-4">
         <div className="flex justify-around items-center">
-        <div className="md:hidden flex justify-center items-center h-[47px] w-[47px] bg-primary-medium rounded-full flex-none ">
-          <img src={one} alt="first step" className="h-[30px] mr-3  mx-auto"/>
+          <div className="md:hidden flex justify-center items-center h-[47px] w-[47px] bg-primary-medium rounded-full flex-none ">
+            <img
+              src={one}
+              alt="first step"
+              className="h-[30px] mr-3  mx-auto"
+            />
           </div>
           <span className="text-[#FFFFFF] md:text-[30px] text-[18px] font-bold">
-          Start Your Contest Entry
-        </span>
+            Start Your Contest Entry
+          </span>
         </div>
       </div>
-      <form action="#" className="grid grid-cols-1  gap-y-4 py-4 px-10 ">
+      <form onSubmit={handleSubmit}  className="grid grid-cols-1  gap-y-4 py-4 px-10 ">
         <TextField
+          onChange={handleChange}
+          value={formData.name || ""}
           id="name"
           name="name"
           type="text"
@@ -27,6 +57,8 @@ const StartForm = () => {
           required
         />
         <TextField
+          onChange={handleChange}
+          value={formData.email || ""}
           id="email"
           name="email"
           type="email"
@@ -35,6 +67,8 @@ const StartForm = () => {
           required
         />
         <TextField
+          onChange={handleChange}
+          value={formData.phone || ""}
           id="phone"
           name="phone"
           type="tel"

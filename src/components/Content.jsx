@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Container from "@/components/Container";
 import pizza from "@/assets/pizza.gif";
 import one from "@/assets/one.gif";
@@ -9,6 +9,8 @@ import BuildForm from "./BuildForm";
 import InstagramFilters from "./InstagramFilter";
 
 const Content = () => {
+  const [formData, setFormData] = useState({});
+  
   return (
     <section>
       <div className="bg-primary-medium w-full py-10">
