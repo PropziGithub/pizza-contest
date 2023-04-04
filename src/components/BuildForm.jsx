@@ -312,8 +312,8 @@ const BuildForm = () => {
           value={formData.about_recipe || ""}
           onChange={handleRecipeChange}
           name="about_recipe"
-          cols="5"
-          rows="10"
+          cols="20"
+          rows="5"
           className="resize-none block w-full appearance-none rounded-[3px] border 
             border-grey-light bg-[#FFFFFF] placeholder:text-[#000000] py-[calc(theme(spacing.2)-1px)]
             px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-main_primary
