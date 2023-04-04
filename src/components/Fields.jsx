@@ -1,3 +1,4 @@
+import React from 'react';
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 function classNames(...classes) {
@@ -30,7 +31,7 @@ export function TextField({ id, label, type = 'text', className, ...props }) {
 }
 
 
-export function SelectField({ id, label,onChange ,value,className, ...props }) {
+export function SelectField({ id, label, onChange, value, className, ...props }) {
   const customStyles = {
     control: (provided) => ({
       ...provided,
