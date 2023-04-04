@@ -88,7 +88,7 @@ const StartForm = () => {
         <div className="flex  py-4">
           <input
             type="checkbox"
-            className="form-checkbox h-4 w-4 text-gray-600"
+            className="form-checkbox w-6 h-6 md:h-4 md:w-4  text-gray-600"
             checked={isChecked}
             onChange={() => setIsChecked(!isChecked)}
           />

@@ -13,7 +13,7 @@ const InstagramFilters = () => {
           <img src={filter} alt="instagram filters"/>
         </div>
       </div>
-      <div className="text-[#FFFFFF] text-sm px-10 md:px-0">
+      <div className="text-[#FFFFFF] text-[.8rem] px-10 md:px-0">
         Use our Topper's Pizza Builder Instagram Filter to make your dream pizza
         and share it with your friends. You will get a chance to be featured in
         our page highlights for customers to view, like, and comment on your

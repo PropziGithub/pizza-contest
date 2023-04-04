@@ -5,7 +5,8 @@ import { SelectField } from "./Fields";
 import Spinner from "./Spinner";
 
 const BuildForm = () => {
-  const [formData, setFormData] = useState({});
+  const [about_recipe, setRecipe] = useState('');
+  const [formData, setFormData] = useState({about_recipe});
   const [startFormData, setStartFormData] = useState(
     JSON.parse(localStorage.getItem("formData"))
   );
@@ -15,9 +16,35 @@ const BuildForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      const [val1, val2, val3, val4, val5, val6, val7, val8, val9] =
+        Object.entries(formData).map(([key, valArray]) => {
+          if (typeof valArray === "string") {
+            return  {
+              [key]: valArray,
+            };
+          }
+          const d = valArray.map(({ value }) => {
+            return value;
+          });
+          return {
+            [key]: d,
+          };
+        });
+      const newFormData = {
+        ...val1,
+        ...val2,
+        ...val3,
+        ...val4,
+        ...val5,
+        ...val6,
+        ...val7,
+        ...val8,
+        ...val9,
+      };
+
       const newPayload = {
         ...startFormData,
-        metaData: formData,
+        metaData: newFormData,
       };
 
       const response = await fetch("https://auto.topperscontest.ca/", {
@@ -41,18 +68,24 @@ const BuildForm = () => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleRecipeChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleChange = (options, action) => {
+    setFormData((pre) => ({
+      ...pre,
+      [action.name]: options,
+    }));
+  };
+
   useEffect(() => {
     window.addEventListener("storage", (event) => {
-      console.log(event.key);
       if (event.key === "formSubmitted") {
       }
       setStartFormData(JSON.parse(localStorage.getItem("formData")));
-      formRef.current.scrollIntoView({ behavior: "smooth" });
+      formRef?.current?.scrollIntoView({ behavior: "smooth" });
     });
   }, [formData]);
 
@@ -63,6 +96,121 @@ const BuildForm = () => {
 
     return () => clearTimeout(timer);
   }, [success]);
+  const crust = [
+    { value: "Regular Curst", label: "Regular Curs" },
+    { value: "Thin Curst", label: "Thin Curs" },
+    { value: "Ultra-thin Curst", label: "Ultra-thin Curs" },
+    { value: "Thick Curst", label: "Thick Curs" },
+    { value: "Whole Wheat Curst", label: "Whole Wheat Curs" },
+    { value: "Cauliflower Curst", label: "Cauliflower Curs" },
+  ];
+  const sauce = [
+    { value: "Toppers Tomato Sauce", label: "Topper's Tomato Sauce" },
+    { value: "Garlic Butter Base", label: "Garlic Butter Base" },
+    { value: "House Dip", label: "House Dip" },
+    { value: "House Dip + Tomato mixed", label: "House Dip + Tomato, mixed" },
+    { value: "Medium Buffalo Sauce Base", label: "Medium Buffalo Sauce Base" },
+    { value: "Hot Buffalo Sauce Base", label: "Hot Buffalo Sauce Base" },
+    { value: "Bold BBQ Sauce Base", label: "Bold BBQ Sauce Base" },
+    { value: "Sweet & Spicy Thai Sauce", label: "Sweet & Spicy Thai Sauce" },
+  ];
+
+  const cheese = [
+    { value: "No Cheese", label: "No Cheese" },
+    { value: "Mozzarella cheese", label: "Mozzarella Cheese" },
+    {
+      value: "Blend of Mozzarella and Cheddar Cheese",
+      label: "Blend of Mozzarella and Cheddar Cheese",
+    },
+    { value: "Feta Cheese", label: "Feta Cheese" },
+    { value: "Asiago Cheese", label: "Asiago Cheese" },
+    { value: "Parmesan Cheese", label: "Parmesan Cheese" },
+    { value: "Lactose Free Mozzarella", label: "Lactose Free Mozzarella" },
+    { value: "Dairy Free Vegan Cheese", label: "Dairy Free Vegan Cheese" },
+    { value: "Extra Cheese", label: "Extra Cheese" },
+  ];
+
+  const meat = [
+    { value: "Pepperoni", label: "Pepperoni" },
+    { value: "Turkey Pepperoni", label: "Turkey Pepperoni" },
+    { value: "Roni Cups", label: "Roni Cups" },
+    { value: "Bacon", label: "Bacon" },
+    { value: "Ham", label: "Ham" },
+    { value: "Chicken Strips", label: "Chicken Strips" },
+    { value: "Shaved Beef Steak", label: "Shaved Beef Steak" },
+    {
+      value: "Boneless (Breaded) Chicken",
+      label: " Boneless (Breaded) Chicken",
+    },
+    { value: "Italian Sausage", label: "Italian Sausage" },
+    { value: "Ground Beef", label: "Ground Beef" },
+  ];
+
+  const veggie = [
+    { value: "Fresh Mushrooms", label: "Fresh Mushrooms" },
+    { value: "Green Peppers", label: "Green Peppers" },
+    { value: "Green Olives", label: "Green Olives" },
+    { value: "Kalamata Olives", label: "Kalamata Olives" },
+    { value: "Spanish White Onions", label: "Spanish White Onions" },
+    { value: "Sweet Red Onions", label: "Sweet Red Onions" },
+    { value: "Diced Tomatoes", label: "Diced Tomatoes" },
+    { value: "Roasted Red Peppers", label: "Roasted Red Peppers" },
+    { value: "Pineapple", label: "Pineapple" },
+    { value: "Hot Peppers", label: "Hot Peppers" },
+    { value: "Jalapeño Peppers", label: "Jalapeño Peppers" },
+    { value: "Basil", label: "Basil" },
+    { value: "Diced Pickles", label: "Diced Pickles" },
+  ];
+
+  const seasoning = [
+    { value: "Montreal Steak Spice", label: "Montreal Steak Spice" },
+    { value: "Garlic + Herb Seasoning", label: "Garlic + Herb Seasoning" },
+    { value: "Italian Herbs", label: "Italian Herbs" },
+    { value: "Chili Peppers", label: "Chili Peppers" },
+    { value: "Parmesan Cheese", label: "Parmesan Cheese" },
+  ];
+
+  const flavour = [
+    { value: "Ranch Swirl", label: "Ranch Swirl" },
+    {
+      value: "Medium Buffalo Sauce Swirl",
+      label: "Medium Buffalo Sauce Swirl",
+    },
+    { value: "Hot Buffalo Sauce Swirl", label: "Hot Buffalo Sauce Swirl" },
+    { value: "Bold BBQ Sauce Swirl", label: "Bold BBQ Sauce Swirl" },
+    {
+      value: "Sweet & Spicy Thai Swirl",
+      label: "Sweet & Spicy Thai Swirl",
+    },
+  ];
+
+  const dip = [
+    { value: "Topper’s Famous House Dip", label: "Topper’s Famous House Dip" },
+    { value: "Ranch", label: "Ranch" },
+    { value: "Caesar", label: "Caesar" },
+    { value: "Tomato", label: "Tomato" },
+    { value: "Sweet & Spicy Thai", label: "Sweet & Spicy Thai" },
+    { value: "Bold BBQ", label: "Bold BBQ" },
+    { value: "Cheddar Chipotle", label: "Cheddar Chipotle" },
+    { value: "Medium Hot Sauce", label: "Medium Hot Sauce" },
+    { value: "Hot Sauce", label: "Hot Sauce" },
+    { value: "Honey Garlic", label: "Honey Garlic" },
+  ];
+
+  const instructions = [
+    { value: "Light Sauce", label: "Light Sauce" },
+    { value: "Extra Sauce", label: "Extra Sauce" },
+    { value: "Lightly Baked", label: "Lightly Baked" },
+    { value: "Well Done", label: "Well Done" },
+    {
+      value: "Brush the pizza crust with Garlic Butter",
+      label: "Brush the pizza crust with Garlic Butter",
+    },
+    {
+      value: "Brush the pizza crust with Olive Oil",
+      label: "Brush the pizza crust with Olive Oil",
+    },
+  ];
   return (
     <div
       ref={formRef}
@@ -87,200 +235,90 @@ const BuildForm = () => {
           onChange={handleChange}
           label="CRUST"
           name="crust"
+          options={crust}
           required
-        >
-          <option value="" disabled selected hidden>
-            -- select one --
-          </option>
-          <option value="Regular Curst">Regular Curst</option>
-          <option value="Thin Curst">Thin Curst</option>
-          <option value="Ultra-thin Curst">Ultra-thin Curst</option>
-          <option value="Thick Curst">Thick Curst</option>
-          <option value="Whole Wheat Curst">Whole Wheat Curst</option>
-          <option value="Cauliflower Curst">Cauliflower Curst</option>
-        </SelectField>
+        />
         <SelectField
           value={formData.sauce || ""}
           onChange={handleChange}
           label="BASE SAUCE"
           name="sauce"
+          options={sauce}
           required
-        >
-          <option value="" disabled selected hidden>
-            -- select one --
-          </option>
-          <option value="Toppers Tomato Sauce">Topper's Tomato Sauce</option>
-          <option value="Garlic Butter Base">Garlic Butter Base</option>
-          <option value="House Dip">House Dip</option>
-          <option value="House Dip + Tomato mixed">
-            House Dip + Tomato, mixed
-          </option>
-          <option value="Medium Buffalo Sauce Base">
-            Medium Buffalo Sauce Base
-          </option>
-          <option value="Hot Buffalo Sauce Base">Hot Buffalo Sauce Base</option>
-          <option value="Bold BBQ Sauce Base">Bold BBQ Sauce Base</option>
-          <option value="Sweet & Spicy Thai Sauce">
-            Sweet &amp; Spicy Thai Sauce
-          </option>
-        </SelectField>
+        />
         <SelectField
           value={formData.cheese || ""}
           onChange={handleChange}
           label="CHEESE TOPPINGS"
           name="cheese"
+          options={cheese}
           required
-        >
-          <option value="" disabled selected hidden>
-            -- select one --
-          </option>
-          <option value="No Cheese">No Cheese</option>
-          <option value="Mozzarella cheese">Mozzarella Cheese</option>
-          <option value="Blend of Mozzarella and Cheddar Cheese">
-            Blend of Mozzarella and Cheddar Cheese
-          </option>
-          <option value="Feta Cheese">Feta Cheese</option>
-          <option value="Asiago Cheese">Asiago Cheese</option>
-          <option value="Parmesan Cheese">Parmesan Cheese</option>
-          <option value="Lactose Free Mozzarella">
-            Lactose Free Mozzarella
-          </option>
-          <option value="Dairy Free Vegan Cheese">
-            Dairy Free Vegan Cheese
-          </option>
-          <option value="Extra Cheese">Extra Cheese</option>
-        </SelectField>
+        />
         <SelectField
           value={formData.meat || ""}
           onChange={handleChange}
           name="meat"
           label="MEAT TOPPINGS"
+          options={meat}
           required
-        >
-          <option value="" disabled selected hidden>
-            -- select one --
-          </option>
-          <option value="Pepperoni">Pepperoni</option>
-          <option value="Turkey Pepperoni">Turkey Pepperoni</option>
-          <option value="Roni Cups">Roni Cups</option>
-          <option value="Bacon">Bacon</option>
-          <option value="Ham">Ham</option>
-          <option value="Chicken Strips">Chicken Strips</option>
-          <option value="Shaved Beef Steak">Shaved Beef Steak</option>
-          <option value="Boneless (Breaded) Chicken">
-            Boneless (Breaded) Chicken
-          </option>
-          <option value="Italian Sausage">Italian Sausage</option>
-          <option value="Ground Beef">Ground Beef</option>
-        </SelectField>
+        />
         <SelectField
           value={formData.veggie || ""}
           onChange={handleChange}
           name="veggie"
           label="VEGGIE TOPPINGS"
+          options={veggie}
           required
-        >
-          <option value="" disabled selected hidden>
-            -- select one --
-          </option>
-          <option value="Fresh Mushrooms">Fresh Mushrooms</option>
-          <option value="Green Peppers">Green Peppers</option>
-          <option value="Green Olives">Green Olives</option>
-          <option value="Kalamata Olives">Kalamata Olives</option>
-          <option value="Spanish White Onions">Spanish White Onions</option>
-          <option value="Sweet Red Onions">Sweet Red Onions</option>
-          <option value="Diced Tomatoes">Diced Tomatoes</option>
-          <option value="Roasted Red Peppers">Roasted Red Peppers</option>
-          <option value="Pineapple">Pineapple</option>
-          <option value="Hot Peppers">Hot Peppers</option>
-          <option value="Jalapeño Peppers">Jalapeño Peppers</option>
-          <option value="Basil">Basil</option>
-          <option value="Diced Pickles">Diced Pickles</option>
-        </SelectField>
+        />
         <SelectField
           value={formData.seasoning || ""}
           onChange={handleChange}
           label="SEASONING"
           name="seasoning"
+          options={seasoning}
           required
-        >
-          <option value="" disabled selected hidden>
-            -- select one --
-          </option>
-          <option value="Montreal Steak Spice">Montreal Steak Spice</option>
-          <option value="Garlic + Herb Seasoning">
-            Garlic + Herb Seasoning
-          </option>
-          <option value="Italian Herbs">Italian Herbs</option>
-          <option value="Chili Peppers">Chili Peppers</option>
-          <option value="Parmesan Cheese">Parmesan Cheese</option>
-        </SelectField>
+        />
         <SelectField
           value={formData.flavour || ""}
           onChange={handleChange}
           label="FLAVOUR SWIRLS"
           name="flavour"
+          options={flavour}
           required
-        >
-          <option value="" disabled selected hidden>
-            -- select one --
-          </option>
-          <option value="Ranch Swirl">Ranch Swirl</option>
-          <option value="Medium Buffalo Sauce Swirl">
-            Medium Buffalo Sauce Swirl
-          </option>
-          <option value="Hot Buffalo Sauce Swirl">
-            Hot Buffalo Sauce Swirl
-          </option>
-          <option value="Bold BBQ Sauce Swirl">Bold BBQ Sauce Swirl</option>
-          <option value="Sweet & Spicy Thai Swirl">
-            Sweet &amp; Spicy Thai Swirl
-          </option>
-        </SelectField>
+        />
         <SelectField
           value={formData.dip || ""}
           onChange={handleChange}
           label="CHOOSE YOUR DIP"
           name="dip"
+          options={dip}
           required
-        >
-          <option value="" disabled selected hidden>
-            -- select one --
-          </option>
-          <option value="Topper’s Famous House Dip">
-            Topper’s Famous House Dip
-          </option>
-          <option value="Ranch">Ranch</option>
-          <option value="Caesar">Caesar</option>
-          <option value="Tomato">Tomato</option>
-          <option value="Sweet & Spicy Thai">Sweet &amp; Spicy Thai</option>
-          <option value="Bold BBQ">Bold BBQ</option>
-          <option value="Cheddar Chipotle">Cheddar Chipotle</option>
-          <option value="Medium Hot Sauce">Medium Hot Sauce</option>
-          <option value="Hot Sauce">Hot Sauce</option>
-          <option value="Honey Garlic">Honey Garlic</option>
-        </SelectField>
+        />
         <SelectField
           value={formData.instructions || ""}
           onChange={handleChange}
           label="SPECIAL INSTRUCTIONS"
           name="instructions"
+          options={instructions}
           required
-        >
-          <option value="" disabled selected hidden>
-            -- select one --
-          </option>
-          <option value="Light Sauce">Light Sauce</option>
-          <option value="Extra Sauce">Extra Sauce</option>
-          <option value="Lightly Baked">Lightly Baked</option>
-          <option value="Well Done">Well Done</option>
-          <option value="Brush the pizza crust with Garlic Butter">
-            Brush the pizza crust with Garlic Butter
-          </option>
-          <option value="Brush the pizza crust with Olive Oil">
-            Brush the pizza crust with Olive Oil
-          </option>
-        </SelectField>
+        />
+        <span className="text-[.8rem] text-[#FFFFFF]">
+          Tell us about your Recipe! Whether you have a special way of creating
+          with the options selected above, or if you’ve imagined something
+          different, please use the text box below to tell us more about how you
+          craft your pizza.
+        </span>
+        <textarea
+          value={formData.about_recipe || ""}
+          onChange={handleRecipeChange}
+          name="about_recipe"
+          cols="5"
+          rows="10"
+          className="resize-none block w-full appearance-none rounded-[3px] border 
+            border-grey-light bg-[#FFFFFF] placeholder:text-[#000000] py-[calc(theme(spacing.2)-1px)]
+            px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-main_primary
+            focus:outline-none focus:ring-main_primary sm:text-sm"
+        ></textarea>
         <span className="text-center text-[#FFFFFF] md:text-[12.4px] text-[11px]">
           *We recommend a maximum of 10 toppings total*
         </span>
@@ -291,7 +329,11 @@ const BuildForm = () => {
             className="w-full"
             disabled={startFormData ? false : true}
           >
-            {success ? <Spinner width={20} height={20} color={"#FFFFFF"} /> : <span>Enter the Contest</span>}
+            {success ? (
+              <Spinner width={20} height={20} color={"#FFFFFF"} />
+            ) : (
+              <span>Enter the Contest</span>
+            )}
           </Button>
         </div>
       </form>
