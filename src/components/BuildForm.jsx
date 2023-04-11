@@ -97,12 +97,12 @@ const BuildForm = () => {
     return () => clearTimeout(timer);
   }, [success]);
   const crust = [
-    { value: "Regular Curst", label: "Regular Curs" },
-    { value: "Thin Curst", label: "Thin Curs" },
-    { value: "Ultra-thin Curst", label: "Ultra-thin Curs" },
-    { value: "Thick Curst", label: "Thick Curs" },
-    { value: "Whole Wheat Curst", label: "Whole Wheat Curs" },
-    { value: "Cauliflower Curst", label: "Cauliflower Curs" },
+    { value: "Regular Curst", label: "Regular Curst" },
+    { value: "Thin Curst", label: "Thin Curst" },
+    { value: "Ultra-thin Curst", label: "Ultra-thin Curst" },
+    { value: "Thick Curst", label: "Thick Curst" },
+    { value: "Whole Wheat Curst", label: "Whole Wheat Curst" },
+    { value: "Cauliflower Curst", label: "Cauliflower Curst" },
   ];
   const sauce = [
     { value: "Toppers Tomato Sauce", label: "Topper's Tomato Sauce" },
@@ -236,7 +236,6 @@ const BuildForm = () => {
           label="CRUST"
           name="crust"
           options={crust}
-          required
         />
         <SelectField
           value={formData.sauce || ""}
@@ -244,7 +243,6 @@ const BuildForm = () => {
           label="BASE SAUCE"
           name="sauce"
           options={sauce}
-          required
         />
         <SelectField
           value={formData.cheese || ""}
@@ -252,7 +250,6 @@ const BuildForm = () => {
           label="CHEESE TOPPINGS"
           name="cheese"
           options={cheese}
-          required
         />
         <SelectField
           value={formData.meat || ""}
@@ -260,7 +257,6 @@ const BuildForm = () => {
           name="meat"
           label="MEAT TOPPINGS"
           options={meat}
-          required
         />
         <SelectField
           value={formData.veggie || ""}
@@ -268,7 +264,6 @@ const BuildForm = () => {
           name="veggie"
           label="VEGGIE TOPPINGS"
           options={veggie}
-          required
         />
         <SelectField
           value={formData.seasoning || ""}
@@ -276,7 +271,6 @@ const BuildForm = () => {
           label="SEASONING"
           name="seasoning"
           options={seasoning}
-          required
         />
         <SelectField
           value={formData.flavour || ""}
@@ -284,7 +278,6 @@ const BuildForm = () => {
           label="FLAVOUR SWIRLS"
           name="flavour"
           options={flavour}
-          required
         />
         <SelectField
           value={formData.dip || ""}
@@ -292,7 +285,6 @@ const BuildForm = () => {
           label="CHOOSE YOUR DIP"
           name="dip"
           options={dip}
-          required
         />
         <SelectField
           value={formData.instructions || ""}
@@ -300,7 +292,6 @@ const BuildForm = () => {
           label="SPECIAL INSTRUCTIONS"
           name="instructions"
           options={instructions}
-          required
         />
         <span className="text-[.8rem] text-[#FFFFFF]">
           Tell us about your Recipe! Whether you have a special way of creating
