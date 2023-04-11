@@ -97,12 +97,12 @@ const BuildForm = () => {
     return () => clearTimeout(timer);
   }, [success]);
   const crust = [
-    { value: "Regular Curst", label: "Regular Curst" },
-    { value: "Thin Curst", label: "Thin Curst" },
-    { value: "Ultra-thin Curst", label: "Ultra-thin Curst" },
-    { value: "Thick Curst", label: "Thick Curst" },
-    { value: "Whole Wheat Curst", label: "Whole Wheat Curst" },
-    { value: "Cauliflower Curst", label: "Cauliflower Curst" },
+    { value: "Regular Crust", label: "Regular Crust" },
+    { value: "Thin Crust", label: "Thin Crust" },
+    { value: "Ultra-thin Crust", label: "Ultra-thin Crust" },
+    { value: "Thick Crust", label: "Thick Crust" },
+    { value: "Whole Wheat Crust", label: "Whole Wheat Crust" },
+    { value: "Cauliflower Crust", label: "Cauliflower Crust" },
   ];
   const sauce = [
     { value: "Toppers Tomato Sauce", label: "Topper's Tomato Sauce" },
