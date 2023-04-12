@@ -3,10 +3,17 @@ import Button from "@/components/Button";
 import { useEffect, useRef, useState } from "react";
 import { SelectField } from "./Fields";
 import Spinner from "./Spinner";
+import toast, { Toaster } from "react-hot-toast";
+
+const notify = () => toast("Thank you for your entry", {
+  duration: 4000,
+  icon: "👍",
+});
+
 
 const BuildForm = () => {
-  const [about_recipe, setRecipe] = useState('');
-  const [formData, setFormData] = useState({about_recipe});
+  const [about_recipe, setRecipe] = useState("");
+  const [formData, setFormData] = useState({ about_recipe });
   const [startFormData, setStartFormData] = useState(
     JSON.parse(localStorage.getItem("formData"))
   );
@@ -19,7 +26,7 @@ const BuildForm = () => {
       const [val1, val2, val3, val4, val5, val6, val7, val8, val9] =
         Object.entries(formData).map(([key, valArray]) => {
           if (typeof valArray === "string") {
-            return  {
+            return {
               [key]: valArray,
             };
           }
@@ -96,6 +103,13 @@ const BuildForm = () => {
 
     return () => clearTimeout(timer);
   }, [success]);
+
+  useEffect(() => {
+    if (success) {
+      notify();
+    }
+  }, [success]);
+
   const crust = [
     { value: "Regular Crust", label: "Regular Crust" },
     { value: "Thin Crust", label: "Thin Crust" },
@@ -216,6 +230,7 @@ const BuildForm = () => {
       ref={formRef}
       className="mt-20 w-[486px] bg-primary-medium rounded-[20px] border border-1 border-grey-light"
     >
+      <Toaster/>
       <div className="text-center bg-primary-dark rounded-t-[20px] py-4">
         <div className="flex justify-around items-center">
           <div className="md:hidden flex justify-center items-center h-[47px] w-[47px] bg-primary-medium rounded-full flex-none ">
