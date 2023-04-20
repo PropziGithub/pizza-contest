@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 const StartForm = () => {
   const dataStored = JSON.parse(localStorage.getItem("formData")) || {};
   const [isChecked, setIsChecked] = useState(false);
+  const [isRuleChecked, setIsRuleChecked] = useState(false);
   const [formData, setFormData] = useState(dataStored);
-  console.log("DATA:", formData);
   
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -54,7 +54,10 @@ const StartForm = () => {
           </span>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="grid grid-cols-1  gap-y-4 py-4 px-10 ">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1  gap-y-4 py-4 px-10 "
+      >
         <TextField
           onChange={handleChange}
           value={formData.name || ""}
@@ -85,7 +88,22 @@ const StartForm = () => {
           placeholder="Phone Number"
           required
         />
-        <div className="flex  py-4">
+        <div className="flex  pt-2">
+          <input
+            type="checkbox"
+            className="w-[57px] h-[57px] md:h-4 md:w-4  text-gray-600"
+            checked={isRuleChecked}
+            onChange={() => setIsRuleChecked(!isRuleChecked)}
+            required
+          />
+          <span className="ml-2 text-[12.4px] text-[#FFFFFF]">
+            I confirm that I have read and agree to abide by the
+            {" "}<Link to={"/rules"} className="underline">
+                  contest rules
+                </Link>
+          </span>
+        </div>
+        <div className="flex py-4">
           <input
             type="checkbox"
             className="w-[57px] h-[57px] md:h-4 md:w-4  text-gray-600"
