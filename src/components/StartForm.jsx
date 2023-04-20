@@ -100,7 +100,7 @@ const StartForm = () => {
             <span className="ml-2 text-[12.4px] text-[#FFFFFF]">
               I confirm that I have read and agree to abide by the{" "}
               <Link to={"/rules"} className="underline">
-                contest rules
+                contest rules.
               </Link>
             </span>
           </div>
@@ -114,7 +114,7 @@ const StartForm = () => {
             />
             <span className="ml-2 text-[12.4px] text-[#FFFFFF]">
               I consent to receive electronic messages (including emails,
-              newsletters, and other communications) from Topper's Pizza
+              newsletters, and other communications) from Topper's Pizza.
             </span>
           </div>
         </div>
