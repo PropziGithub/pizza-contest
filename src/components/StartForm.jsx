@@ -9,7 +9,7 @@ const StartForm = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isRuleChecked, setIsRuleChecked] = useState(false);
   const [formData, setFormData] = useState(dataStored);
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     try {
@@ -88,33 +88,37 @@ const StartForm = () => {
           placeholder="Phone Number"
           required
         />
-        <div className="flex  pt-2">
-          <input
-            type="checkbox"
-            className="w-[57px] h-[57px] md:h-4 md:w-4  text-gray-600"
-            checked={isRuleChecked}
-            onChange={() => setIsRuleChecked(!isRuleChecked)}
-            required
-          />
-          <span className="ml-2 text-[12.4px] text-[#FFFFFF]">
-            I confirm that I have read and agree to abide by the
-            {" "}<Link to={"/rules"} className="underline">
-                  contest rules
-                </Link>
-          </span>
+        <div className="flex flex-col">
+          <div className="flex pt-2">
+            <input
+              type="checkbox"
+              className="md:w-4 w-[18px] text-gray-600 flex-none"
+              checked={isRuleChecked}
+              onChange={() => setIsRuleChecked(!isRuleChecked)}
+              required
+            />
+            <span className="ml-2 text-[12.4px] text-[#FFFFFF]">
+              I confirm that I have read and agree to abide by the{" "}
+              <Link to={"/rules"} className="underline">
+                contest rules
+              </Link>
+            </span>
+          </div>
+
+          <div className="flex py-4">
+            <input
+              type="checkbox"
+              className="md:w-4 w-[18px] text-gray-600 flex-none"
+              checked={isChecked}
+              onChange={() => setIsChecked(!isChecked)}
+            />
+            <span className="ml-2 text-[12.4px] text-[#FFFFFF]">
+              I consent to receive electronic messages (including emails,
+              newsletters, and other communications) from Topper's Pizza
+            </span>
+          </div>
         </div>
-        <div className="flex py-4">
-          <input
-            type="checkbox"
-            className="w-[57px] h-[57px] md:h-4 md:w-4  text-gray-600"
-            checked={isChecked}
-            onChange={() => setIsChecked(!isChecked)}
-          />
-          <span className="ml-2 text-[12.4px] text-[#FFFFFF]">
-            I consent to receive electronic messages (including emails,
-            newsletters, and other communications) from Topper's Pizza
-          </span>
-        </div>
+
         <div>
           <Button
             type="submit"
